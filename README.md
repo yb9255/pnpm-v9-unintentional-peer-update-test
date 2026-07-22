@@ -65,7 +65,7 @@ run-experiment.sh          전체 실험 자동 실행 + PASS/FAIL 판정
 - pnpm workspace에서 auto-install-peers 플래그를 켜둔 다음 첫 의존성 설치를 진행할 때, 워크스페이스 내에서 특정 peer dependency 버저닝 명시가 라이브러리끼리 충돌하는 경우 교집합이 성립하는 버전을 설치한다. 1차 실험에서 각 워크스페이스 별로 eslint의 버저닝이 달랐던 이유가 이것 때문이다.
 - 문제는 이후 이미 있는 pnpm-lock.yaml 파일을 해석하며 라이브러리를 추가 설치 할 때 발생한다.
   - pnpm은 라이브러리 추가로 피어 디펜던시 버저닝을 다시 할 때 모든 피어 디펜던시 버전을 상단에서 미리 평가(peer hoisting)하는데, 이 때 이미 평가한 기록이 있다면 (pnpm-lock.yaml의 importer 항목으로 추정) 이 버전을 우선 체크한다. (기존 기록 참조 재해석)
-  - 문제가 발생하는 지점은 이 peer hoisting을 실행하는 함수 `hoistPeers`에 있다. pnpm v9.9.0 버전에서는 [라이브러리 추가로 발생한 Peer Hoisting 중 pnpm-lock.yaml이 있을 시 모든 워크스페이스의 피어 버전 중 가장 높은 버전을 peer dependency 버전으로 계산한다.](https://github.com/pnpm/pnpm/blob/v9.9.0/pkg-manager/resolve-dependencies/src/hoistPeers.ts#L4-L29) 링크의 23번째 라인이 현재 린트 충돌 문제를 만들고 있다.
+  - 문제가 발생하는 지점은 이 peer hoisting을 실행하는 함수 `hoistPeers`에 있다. pnpm v9.9.0 버전에서는 [라이브러리 추가로 발생한 Peer Hoisting 중 pnpm-lock.yaml이 있을 시 모든 워크스페이스의 피어 버전 중 가장 높은 버전을 peer dependency 버전으로 계산한다.](https://github.com/pnpm/pnpm/blob/v9.9.0/pkg-manager/resolve-dependencies/src/hoistPeers.ts#L4-L29) 링크의 23번째 라인이 현재 린트 버전 강제 업데이트로 인한 충돌 문제를 만들고 있다.
 - 이 문제는 현재 pnpm 최신 버전에서 해결이 된 상태이며, [메인테이너가 주석으로 현재 hoistPeers 함수의 구조에 대해 설명하며 해당 문제를 직접 언급하고 있다.](https://github.com/pnpm/pnpm/blob/main/pnpm11/installing/deps-resolver/src/hoistPeers.ts#L46-L56)
 
 

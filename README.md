@@ -48,6 +48,7 @@ run-experiment.sh          전체 실험 자동 실행 + PASS/FAIL 판정
       <img src="./assets/root-1.png" width="640px" alt="" />
 
    2. pnpm-lock.yaml의 importer 항묵을 확인하면 ui-like(lib/ui-like)의 devDependencies는 현재 워크스페이스의 eslint 상한 버전인 9버전을 참조함을 확인할 수 있다.
+      
       <img src="./assets/ui-like-1.png" width="640px" alt="" />
 
 

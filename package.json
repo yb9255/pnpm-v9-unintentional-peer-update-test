@@ -1,0 +1,13 @@
+{
+  "name": "pnpm-v9-unintentional-peer-update-test",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.9.0",
+  "devDependencies": {
+    "eslint-config-next": "12.3.1",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-prettier": "^4.2.1",
+    "typescript": "4.8.3"
+  }
+}

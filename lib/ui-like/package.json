@@ -1,0 +1,10 @@
+{
+  "name": "ui-like",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-storybook": "^0.12.0"
+  }
+
+}

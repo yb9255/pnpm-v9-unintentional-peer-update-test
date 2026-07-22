@@ -41,16 +41,21 @@ run-experiment.sh          전체 실험 자동 실행 + PASS/FAIL 판정
 ### 실험 1
 
 1. 모든 node_modules와 pnpm-lock.yaml 파일을 제거한다. 만약 이전에 실험하려고 특정 라이브러리(bash 실행의 left-pad)를 설치했다면 그것도 의존성에서 제거한다.
+   
 2. 루트에 pnpm install을 실행한다. 이 후, pnpm-lock.yaml에서 각 워크스페이스별 버저닝을 명시하는 importer 항목을 확인한다.
-  1. pnpm-lock.yaml의 importer 항목을 확인하면 root(.)의 devDependencies는 현재 워크스페이스의 eslint 상한 버전인 8버전을 참조함을 확인할 수 있다.
-  2. pnpm-lock.yaml의 importer 항묵을 확인하면 ui-like(lib/ui-like)의 devDependencies는 현재 워크스페이스의 eslint 상한 버전인 9버전을 참조함을 확인할 수 있다.
+   1. pnpm-lock.yaml의 importer 항목을 확인하면 root(.)의 devDependencies는 현재 워크스페이스의 eslint 상한 버전인 8버전을 참조함을 확인할 수 있다.
 
+      <img src="./assets/root-1.png" width="640px" alt="" />
+
+   2. pnpm-lock.yaml의 importer 항묵을 확인하면 ui-like(lib/ui-like)의 devDependencies는 현재 워크스페이스의 eslint 상한 버전인 9버전을 참조함을 확인할 수 있다.
+      <img src="./assets/ui-like-1.png" width="640px" alt="" />
 
 
 ### 실험 2
 
 1. 실험 1이 끝난 이후, 어떤 경로에서든 (root (-w 플래그와 함께), lib/ui-like, apps/cra-like) 아무 라이브러리나 설치한다.
 2. pnpm importer를 확인하면, root의 devDependencies가 eslint 9버전으로 강제 업데이트 됨을 확인할 수 있다.
+   <img src="./assets/root-2.png" width="640px" alt="" />
 
 
 
